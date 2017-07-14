@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import Nav from "./Nav";
-import Artwork from "./Artwork";
+import One from "./One";
 
 class Index extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            artwork: [],
+            artworks: [],
             search: "",
             searchResult: null,
         }
@@ -21,7 +21,7 @@ class Index extends Component {
         .get(`https://project-4-back.herokuapp.com/searches`)
         .then((response) => {
             this.setState({
-                artwork: response.data
+                artworks: response.data
             });
         })
         .catch((err) => {
@@ -33,7 +33,7 @@ class Index extends Component {
     handleSubmit(event) {
         event.preventDefault();
         let searchTerm = this.state.search;
-        axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${searchTerm}`)
+        axios.get(`https://project-4-back.herokuapp.com/searches?search=${searchTerm}`)
         .then((response) => {
           console.log(response.data);
             this.setState({
@@ -73,14 +73,15 @@ class Index extends Component {
                 </form>
               </div>
 
-                {this.state.searchResult ? <Artwork key={this.state.searchResult.id} show={this.state.searchResult} /> : ""}
+              {this.state.searchResult ? <One key={this.state.searchResult.id} one={this.state.searchResult} /> : ""}
 
-                { this.state.shows.map((show) => {
-                    return (
-                      <Artwork key={show.id} show={show} />
-                    );
-                }) }
-            </div>
+                  { this.state.artworks.map((artwork) => {
+                      return (
+                        <One key={artwork.id} artwork={artwork} />
+                      );
+                  }) }
+              </div>
         );
     }
 }
+export default Index;

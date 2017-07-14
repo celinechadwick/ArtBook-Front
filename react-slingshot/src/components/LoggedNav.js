@@ -36,7 +36,7 @@ class LoggedNav extends Component {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/shows">
+                                <Link to="/searches">
                                     Browse
                                 </Link>
                             </li>

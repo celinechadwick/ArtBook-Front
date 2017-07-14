@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
-
 import LoggedNav from "./LoggedNav";
 import GuestNav from "./GuestNav";
 

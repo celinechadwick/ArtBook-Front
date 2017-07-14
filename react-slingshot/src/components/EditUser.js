@@ -4,7 +4,7 @@ import { browserHistory } from "react-router";
 
 import Nav from "./Nav";
 
-class NewUser extends Component {
+class EditUser extends Component {
     constructor(props) {
         super(props);
 
@@ -12,25 +12,40 @@ class NewUser extends Component {
             first_name: "",
             last_name: "",
             email: "",
-            password_digest: "",
+            password: ""
         }
     }
 
-    componentWillMount() {
-      if (window.localStorage.token) {
-        browserHistory.push('/index');
-      }
+    componentDidMount() {
+        axios
+        .get(`https://project-4-back.herokuapp.com/users/${this.props.params.id}`, {
+            headers: {
+                "Authorization": window.localStorage.getItem("token")
+            }
+        })
+        .then((response) => {
+            const user = response.data;
+            response.data.password = "";
+            this.setState(user);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
         axios
-        .post("https://project-4-back.herokuapp.com/users", {
+        .put(`https://project-4-back.herokuapp.com/users/${this.props.params.id}`, {
             user: this.state
+        }, {
+            headers: {
+                "Authorization": window.localStorage.getItem("token")
+            }
         })
         .then(() => {
-            browserHistory.push("users/login");
+            browserHistory.push(`/users/${this.props.params.id}`);
         })
         .catch((err) => {
             console.log(err);
@@ -38,18 +53,19 @@ class NewUser extends Component {
     }
 
     handleChange(event) {
-
         this.setState({
             [event.target.name]: event.target.value
         });
     }
+
+
 
     render() {
         return (
             <div>
                 <Nav />
 
-                <h2 className="txt-center">Create An Account</h2>
+                <h2 className="txt-center">Edit Profile</h2>
 
                 <div className="container well small-container margin-top-20">
                     <form onSubmit={this.handleSubmit.bind(this)}>
@@ -57,29 +73,28 @@ class NewUser extends Component {
                             First Name
                         </div>
                         <div className="margin-top-10">
-                            <input onChange={this.handleChange.bind(this)} name="first_name" type="text" className="form-control" />
+                            <input onChange={this.handleChange.bind(this)} name="first_name" type="text" className="form-control" value={this.state.first_name} />
                         </div>
                         <div className="bold margin-top-10">
                             Last Name
                         </div>
                         <div className="margin-top-10">
-                            <input onChange={this.handleChange.bind(this)} name="last_name" type="text" className="form-control" />
+                            <input onChange={this.handleChange.bind(this)} name="last_name" type="text" className="form-control" value={this.state.last_name} />
                         </div>
                         <div className="bold margin-top-10">
                             Email
                         </div>
                         <div className="margin-top-10">
-                            <input onChange={this.handleChange.bind(this)} name="email" type="email" className="form-control" />
+                            <input onChange={this.handleChange.bind(this)} name="email" type="email" className="form-control" value={this.state.email} />
                         </div>
                         <div className="bold margin-top-10">
                             Password
                         </div>
                         <div className="margin-top-10">
-                            <input onChange={this.handleChange.bind(this)} name="password_digest" type="password" className="form-control" />
+                            <input onChange={this.handleChange.bind(this)} name="password_digest" type="password" className="form-control" value={this.state.password} />
                         </div>
-
                         <div className="margin-top-20 txt-center">
-                            <button type="submit" className="btn btn-primary">Submit </button>
+                            <button type="submit" className="btn btn-primary">Submit Changes</button>
                         </div>
                     </form>
                 </div>
@@ -88,4 +103,4 @@ class NewUser extends Component {
     }
 }
 
-export default NewUser;
+export default EditUser
