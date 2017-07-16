@@ -17,7 +17,7 @@ class User extends Component {
 
     componentDidMount() {
         axios
-        .get(`https://project-4-back.herokuapp.com/users/${this.props.params.id}`, {
+        .get(`https://project-4-back.herokuapp.com/users/${this.params.id}`, {
             headers: {
                 "Authorization": window.localStorage.getItem("token")
             }

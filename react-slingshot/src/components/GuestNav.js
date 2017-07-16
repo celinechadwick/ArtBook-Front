@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
+const Style = {width:'200', height:'200', padding:'20px'};
+const NavStyle = {'background-color':'white', margin:'20px'}
+const ulStyle = {'margin-left': '40%'}
+
 
 class GuestNav extends Component {
     constructor(props) {
@@ -8,22 +12,16 @@ class GuestNav extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-default">
-                <div className="container-fluid">
-                    <div className="navbar-header">
-                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span className="sr-only">Toggle navigation</span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                        </button>
+          <div>
+            <nav className="navbar navbar-default" style={NavStyle}>
+            <img src="http://i.imgur.com/I46NBoI.png" className="img-rounded, center-block" style={Style}/>
+
                         <div className="navbar-brand">
-                            TVflix
+
                         </div>
-                    </div>
 
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul className="nav navbar-nav">
+                        <ul className="nav navbar-nav" style={ulStyle}>
                             <li>
                                 <Link to="users/login">
                                     Login
@@ -36,8 +34,8 @@ class GuestNav extends Component {
                             </li>
                         </ul>
                     </div>
-                </div>
             </nav>
+            </div>
         );
     }
 }

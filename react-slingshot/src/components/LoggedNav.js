@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { Link, browserHistory } from "react-router";
+const Style = {width:'200', height:'200', padding:'20px'};
+const NavStyle = {'background-color':'white', margin:'20px'}
+const ulStyle = {'margin-left': '38%'}
 
 class LoggedNav extends Component {
     constructor(props) {
         super(props);
+
     }
 
     handleLogout(event) {
@@ -17,26 +21,25 @@ class LoggedNav extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-default">
+            <nav className="navbar navbar-default" style={NavStyle}>
+            <img src="http://i.imgur.com/I46NBoI.png" className="img-rounded, center-block" style={Style}/>
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 
-                        </button>
                         <div className="navbar-brand">
-                            TVflix
+
                         </div>
                     </div>
 
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul className="nav navbar-nav">
+                        <ul className="nav navbar-nav" style={ulStyle}>
                             <li>
-                                <Link to={`/users/${window.localStorage.userID}`}>
+                                <Link to={`/users/${window.localStorage.userID}`} >
                                     User Profile
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/searches">
+                                <Link to="/searches"  >
                                     Browse
                                 </Link>
                             </li>

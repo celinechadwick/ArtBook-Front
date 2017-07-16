@@ -3,6 +3,7 @@ import axios from "axios";
 import { browserHistory } from "react-router";
 
 import Nav from "./Nav";
+import Constants from "../constants";
 
 class NewUser extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class NewUser extends Component {
             first_name: "",
             last_name: "",
             email: "",
-            password_digest: "",
+            password: "",
         }
     }
 
@@ -26,7 +27,7 @@ class NewUser extends Component {
         event.preventDefault();
 
         axios
-        .post("https://project-4-back.herokuapp.com/users", {
+        .post(`${Constants.BASE_URL}/users`, {
             user: this.state
         })
         .then(() => {
@@ -49,9 +50,9 @@ class NewUser extends Component {
             <div>
                 <Nav />
 
-                <h2 className="txt-center">Create An Account</h2>
 
                 <div className="container well small-container margin-top-20">
+                <h2 className="txt-center">Create An Account</h2>
                     <form onSubmit={this.handleSubmit.bind(this)}>
                         <div className="bold">
                             First Name
@@ -75,7 +76,7 @@ class NewUser extends Component {
                             Password
                         </div>
                         <div className="margin-top-10">
-                            <input onChange={this.handleChange.bind(this)} name="password_digest" type="password" className="form-control" />
+                            <input onChange={this.handleChange.bind(this)} name="password" type="password" className="form-control" />
                         </div>
 
                         <div className="margin-top-20 txt-center">

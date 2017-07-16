@@ -1,22 +1,29 @@
 import React, { Component } from "react";
 import { browserHistory, Link } from "react-router";
 import axios from 'axios';
+import Login from "./Login"
+
+import Constants from "../constants";
 
 class One extends Component {
     constructor(props) {
         super(props);
     }
 
-
+componentDidMount() {
+  console.log(window.localStorage.getItem("userID"))
+}
     saveArtwork (artwork, event) {
         event.preventDefault();
-        axios.post(`/users/${this.params.user_id}/artworks/new`, null, {
+
+        axios.post(`/users/${this.props.id}/artworks/new`, null, {
             headers: {
                 "Authorization": window.localStorage.getItem("token")
             }
         })
         .then(() => {
-            browserHistory.push(`/users/${this.params.user_id}`);
+            browserHistory.push(`/users/${this.params.id}`);
+
         })
         .catch((err) => {
             console.log(err);
@@ -31,7 +38,9 @@ class One extends Component {
           <div className="container well small-container margin-top-20">
             <div className="row margin-top-20">
                 <div className="col-sm-3">
-                    <img src={this.props.artwork.webImage.url} className="img-responsive" />
+                    {this.props.artwork.webImage ?
+                      <img src={this.props.artwork.webImage.url} className="img-responsive" />
+                    : ""}
                 </div>
                 <div className="col-sm-6">
                     <div>
@@ -43,7 +52,7 @@ class One extends Component {
 
                 </div>
                 <div className="col-sm-3 txt-right">
-                <Link onClick={this.saveArtwork.bind(this, this.props.artwork.webImage.url)} className="btn btn-danger">
+                <Link onClick={this.saveArtwork.bind(this, this.props.artwork)} className="btn btn-danger">
                     <i className="glyphicon glyphicon-heart-empty"></i>
                 </Link>
 

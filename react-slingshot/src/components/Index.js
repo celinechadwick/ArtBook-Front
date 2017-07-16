@@ -4,6 +4,9 @@ import axios from "axios";
 import Nav from "./Nav";
 import One from "./One";
 
+import Constants from "../constants";
+const style={'margin-top':'10px'}
+
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -12,16 +15,18 @@ class Index extends Component {
             artworks: [],
             search: "",
             searchResult: null,
+            user: []
         }
     }
 
 
     componentDidMount() {
         axios
-        .get(`https://project-4-back.herokuapp.com/searches`)
+        .get(`${Constants.BASE_URL}/searches`)
+
         .then((response) => {
             this.setState({
-                artworks: response.data
+                artworks: response.data.artObjects
             });
         })
         .catch((err) => {
@@ -32,12 +37,11 @@ class Index extends Component {
 // What am I going to use for this search term?
     handleSubmit(event) {
         event.preventDefault();
-        let searchTerm = this.state.search;
-        axios.get(`https://project-4-back.herokuapp.com/searches?search=${searchTerm}`)
+
+        axios.get(`${Constants.BASE_URL}/searches?search=${this.state.search}`)
         .then((response) => {
-          console.log(response.data);
             this.setState({
-                searchResult: response.data,
+                artworks: response.data.artObjects
             });
           })
         .catch((err) => {
@@ -62,13 +66,13 @@ class Index extends Component {
               <div className="container well small-container margin-top-20">
                 <form onSubmit={this.handleSubmit.bind(this)}>
                    <div className="bold">
-                       Search for anything:
+                       Search For Anything:
                    </div>
                    <div className="margin-top-10">
                        <input onChange={this.handleChange.bind(this)} name="search" type="text" className="form-control" />
                    </div>
-                   <div className="margin-top-20 txt-center">
-                       <button type="submit" className="btn btn-primary">Search! </button>
+                   <div className="margin-top-30 txt-center">
+                       <button type="submit" className="btn btn-primary" style={style}> Search! </button>
                    </div>
                 </form>
               </div>

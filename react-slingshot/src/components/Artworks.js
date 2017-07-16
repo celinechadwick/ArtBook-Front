@@ -4,6 +4,8 @@ import axios from "axios";
 import { browserHistory } from "react-router";
 import Artwork from './Artwork';
 
+import Constants from "../constants";
+
 
 class Artworks extends Component {
     constructor(props) {
@@ -17,7 +19,7 @@ class Artworks extends Component {
 
   componentDidMount() {
     console.log(this.props.userID);
-      axios.get(`https://project-4-back.herokuapp.com/users/${this.props.userID}/artworks`, {
+      axios.get(`${Constants.BASE_URL}/users/${this.props.userID}/artworks`, {
         headers: {
             "Authorization": window.localStorage.getItem("token")
           }
