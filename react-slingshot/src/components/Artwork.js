@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+const style={'margin':'20px'}
 
 class Artwork extends Component {
     constructor(props) {
@@ -7,8 +8,9 @@ class Artwork extends Component {
 
     render() {
         return (
+          <div className="container well small-container margin-top-20">
             <div className="row margin-top-20">
-                <div className="col-sm-3">
+                <div className="col-sm-3" style={style}>
                     <img src={this.props.artwork.image} className="img-responsive" />
                 </div>
                 <div className="col-sm-6">
@@ -24,6 +26,7 @@ class Artwork extends Component {
                     <button onClick={this.props.destroyArtwork} className="btn btn-danger margin-left-5">
                         <i className="glyphicon glyphicon-remove"></i>
                     </button>
+                </div>
                 </div>
         );
     }

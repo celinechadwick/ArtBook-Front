@@ -41,6 +41,7 @@ class Artworks extends Component {
     }
 
     destroyArtwork(id, event) {
+      // event.preventDefault();
         axios.delete(`${Constants.BASE_URL}/users/${this.props.userID}/artworks/${id}`, {
           headers: {
             "Authorization": `Token token=${window.localStorage.getItem("token")}`
@@ -50,7 +51,7 @@ class Artworks extends Component {
         })
         .then(() => {
 
-      browserHistory.push(/users/`${this.props.userID}`);
+      browserHistory.push(`/users/${this.props.userID}`);
 
       this.setState({
         artworks: this.state.artworks
