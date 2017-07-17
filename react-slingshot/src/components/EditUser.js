@@ -20,7 +20,7 @@ class EditUser extends Component {
         axios
         .get(`https://project-4-back.herokuapp.com/users/${window.localStorage.userID}`, {
             headers: {
-                "Authorization": window.localStorage.getItem("token")
+                "Authorization": `Token token=${window.localStorage.getItem("token")}`
             }
         })
         .then((response) => {

@@ -15,16 +15,14 @@ class Artwork extends Component {
                     <div>
                         <strong>{this.props.artwork.title}</strong>
                     </div>
-                    <div className="margin-top-10">
-                        Year: {this.props.artwork.year}
-                    </div>
+
                     <div>
                         Artist: {this.props.artwork.artist}
                     </div>
                 </div>
 
                     <button onClick={this.props.destroyArtwork} className="btn btn-danger margin-left-5">
-                        <i className="fa fa-remove"></i>
+                        <i className="glyphicon glyphicon-remove"></i>
                     </button>
                 </div>
         );

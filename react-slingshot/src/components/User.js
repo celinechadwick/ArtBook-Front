@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from './Nav';
 import Artworks from './Artworks'
-
+import Constants from "../constants";
 import Profile from './Profile';
 
 
@@ -17,9 +17,9 @@ class User extends Component {
 
     componentDidMount() {
         axios
-        .get(`https://project-4-back.herokuapp.com/users/${window.localStorage.userID}`, {
+        .get(`${Constants.BASE_URL}/users/${window.localStorage.userID}`, {
             headers: {
-                "Authorization": window.localStorage.getItem("token")
+              "Authorization": `Token token=${window.localStorage.getItem("token")}`
             }
         })
         .then((response) => {
@@ -42,8 +42,9 @@ class User extends Component {
         <div>
           <Nav />
           <Profile user={this.state.user} />
-
           <Artworks userID={this.props.params.id} />
+
+
           </div>
         );
     }

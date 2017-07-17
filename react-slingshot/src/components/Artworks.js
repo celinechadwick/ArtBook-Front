@@ -7,6 +7,7 @@ import Artwork from './Artwork';
 import Constants from "../constants";
 
 
+
 class Artworks extends Component {
     constructor(props) {
         super(props);
@@ -21,7 +22,8 @@ class Artworks extends Component {
     console.log(this.props.userID);
       axios.get(`${Constants.BASE_URL}/users/${this.props.userID}/artworks`, {
         headers: {
-            "Authorization": window.localStorage.getItem("token")
+          "Authorization": `Token token=${window.localStorage.getItem("token")}`
+
           }
         })
         .then((response) => {
@@ -30,6 +32,7 @@ class Artworks extends Component {
             this.setState({
                 artworks: artworks
             });
+            console.log(this.state);
         })
         .catch((err) => {
             console.log(err);
@@ -37,12 +40,17 @@ class Artworks extends Component {
         console.log(this.state)
     }
 
-    destroyArtwork(index, id, event) {
-        event.preventDefault();
-        axios.delete(`https://project-4-back.herokuapp.com/users/${this.props.params.id}/artworks/${this.props.params.id}`)
+    destroyArtwork(id, event) {
+        axios.delete(`${Constants.BASE_URL}/users/${this.props.userID}/artworks/${id}`, {
+          headers: {
+            "Authorization": `Token token=${window.localStorage.getItem("token")}`
+
+            }
+
+        })
         .then(() => {
 
-      browserHistory.push("/users/this.props.params.id");
+      browserHistory.push(/users/`${this.props.userID}`);
 
       this.setState({
         artworks: this.state.artworks
@@ -60,7 +68,7 @@ class Artworks extends Component {
           <div>
           { this.state.artworks.map((artwork, index) => {
                     return (
-                        <Artwork key={artwork.id} artwork={artwork} destroyArtwork={this.destroyArtwork.bind(this, index, artwork.user_id, artwork.id)} />
+                        <Artwork key={index} artwork={artwork} destroyArtwork={this.destroyArtwork.bind(this, artwork.id)} />
                     );
                 }) }
 

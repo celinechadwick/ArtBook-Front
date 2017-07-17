@@ -14,10 +14,19 @@ class One extends Component {
     saveArtwork (artwork, event) {
         event.preventDefault();
 
-        axios.post(`/users/${window.localStorage.userID}/artworks/new`, null, {
+        axios.post(`${Constants.BASE_URL}/users/${window.localStorage.userID}/artworks`, {
+          artwork: {
+            "image": this.props.artwork.webImage.url,
+            "title": this.props.artwork.longTitle,
+            "artist": this.props.artwork.principalOrFirstMaker,
+            "category": "",
+            "year": ""
+          }
+        }, {
             headers: {
-                "Authorization": window.localStorage.getItem("token")
-            }
+                "Authorization": `Token token=${window.localStorage.getItem("token")}`
+            },
+
         })
         .then(() => {
             browserHistory.push(`/users/${this.props.params.id}`);
