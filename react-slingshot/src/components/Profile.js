@@ -12,11 +12,11 @@ class Profile extends Component {
         return (
             <div>
             <div className="container well small-container margin-top-20">
-              Full Name: {this.props.data.first_name} {this.props.data.last_name}
+              Full Name: {this.props.user.first_name} {this.props.user.last_name}
               <br />
-              Created Account: {this.props.data.created_at}
+              Created Account: {this.props.user.created_at}
               <br />
-              <Link to={`/users/${this.props.data.id}/edit`}>Edit Profile</Link>
+              <Link to={`/users/${window.localStorage.userID}/edit`}>Edit Profile</Link>
             </div>
 
             </div>

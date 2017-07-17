@@ -11,25 +11,27 @@ class User extends Component {
         super(props);
 
         this.state = {
-            user: {}
+            user:{}
         }
     }
 
     componentDidMount() {
         axios
-        .get(`https://project-4-back.herokuapp.com/users/${this.params.id}`, {
+        .get(`https://project-4-back.herokuapp.com/users/${window.localStorage.userID}`, {
             headers: {
                 "Authorization": window.localStorage.getItem("token")
             }
         })
         .then((response) => {
             this.setState({
-                user: response.data,
+                user: response.data
             });
+            console.log(this.state)
         })
         .catch((err) => {
             console.log(err);
         });
+        console.log(this.state)
     }
 
 
@@ -39,7 +41,7 @@ class User extends Component {
       return (
         <div>
           <Nav />
-          <Profile data={this.state.user} />
+          <Profile user={this.state.user} />
 
           <Artworks userID={this.props.params.id} />
           </div>

@@ -18,7 +18,7 @@ class EditUser extends Component {
 
     componentDidMount() {
         axios
-        .get(`https://project-4-back.herokuapp.com/users/${this.props.params.id}`, {
+        .get(`https://project-4-back.herokuapp.com/users/${window.localStorage.userID}`, {
             headers: {
                 "Authorization": window.localStorage.getItem("token")
             }
@@ -65,9 +65,9 @@ class EditUser extends Component {
             <div>
                 <Nav />
 
-                <h2 className="txt-center">Edit Profile</h2>
 
                 <div className="container well small-container margin-top-20">
+                <h2 className="txt-center margin-left-10">Edit Profile</h2>
                     <form onSubmit={this.handleSubmit.bind(this)}>
                         <div className="bold">
                             First Name

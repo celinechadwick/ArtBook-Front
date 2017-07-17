@@ -12,7 +12,7 @@ class Artworks extends Component {
         super(props);
 
         this.state = {
-          artworks: {}
+          artworks: []
         };
     }
 
@@ -34,6 +34,7 @@ class Artworks extends Component {
         .catch((err) => {
             console.log(err);
         });
+        console.log(this.state)
     }
 
     destroyArtwork(index, id, event) {

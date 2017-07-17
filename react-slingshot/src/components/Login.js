@@ -18,7 +18,7 @@ class Login extends Component {
 
   componentWillMount() {
     if (window.localStorage.token) {
-      browserHistory.push('/shows');
+      browserHistory.push('/');
     }
   }
 
@@ -31,9 +31,10 @@ class Login extends Component {
         .then((response) => {
             const token = response.data.token;
             const userID = response.data.userID;
+            console.log(response);
             window.localStorage.setItem("token", token);
             window.localStorage.setItem("userID", userID);
-            console.log(window.localStorage);
+            // console.log(window.localStorage);
             browserHistory.push("/");
         })
         .catch((err) => {

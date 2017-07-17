@@ -10,19 +10,17 @@ class One extends Component {
         super(props);
     }
 
-componentDidMount() {
-  console.log(window.localStorage.getItem("userID"))
-}
+
     saveArtwork (artwork, event) {
         event.preventDefault();
 
-        axios.post(`/users/${this.props.id}/artworks/new`, null, {
+        axios.post(`/users/${window.localStorage.userID}/artworks/new`, null, {
             headers: {
                 "Authorization": window.localStorage.getItem("token")
             }
         })
         .then(() => {
-            browserHistory.push(`/users/${this.params.id}`);
+            browserHistory.push(`/users/${this.props.params.id}`);
 
         })
         .catch((err) => {
