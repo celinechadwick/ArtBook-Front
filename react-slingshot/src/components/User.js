@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Artworks from './Artworks'
 import Constants from "../constants";
 import Profile from './Profile';
+const background = {'background-color': 'rgba(30,33,39,.85)'}
 
 
 class User extends Component {
@@ -39,7 +40,7 @@ class User extends Component {
     //I want to make sure I am not looping over ALL the components!!!
     render() {
       return (
-        <div>
+        <div style={background} >
           <Nav />
           <Profile user={this.state.user} />
           <Artworks userID={this.props.params.id} />

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { browserHistory, Link } from "react-router";
 import axios from 'axios';
 import Login from "./Login"
-
 import Constants from "../constants";
+const floatRight = {'float':'right'}
 
 class One extends Component {
     constructor(props) {
@@ -44,12 +44,12 @@ class One extends Component {
         return (
           <div className="container well small-container margin-top-20">
             <div className="row margin-top-20">
-                <div className="col-sm-3">
+                <div className="col-sm-6">
                     {this.props.artwork.webImage ?
                       <img src={this.props.artwork.webImage.url} className="img-responsive" />
                     : ""}
                 </div>
-                <div className="col-sm-6">
+                <div className="col-sm-4">
                     <div>
                         <strong>{this.props.artwork.longTitle}</strong>
                     </div>
@@ -58,7 +58,7 @@ class One extends Component {
                     </div>
 
                 </div>
-                <div className="col-sm-3 txt-right">
+                <div className="col-sm-1" style={floatRight}>
                 <Link onClick={this.saveArtwork.bind(this, this.props.artwork)} className="btn btn-danger">
                     <i className="glyphicon glyphicon-heart-empty"></i>
                 </Link>

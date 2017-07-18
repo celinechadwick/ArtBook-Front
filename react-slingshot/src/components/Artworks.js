@@ -19,7 +19,6 @@ class Artworks extends Component {
 
 
   componentDidMount() {
-    console.log(this.props.userID);
       axios.get(`${Constants.BASE_URL}/users/${this.props.userID}/artworks`, {
         headers: {
           "Authorization": `Token token=${window.localStorage.getItem("token")}`
@@ -41,21 +40,21 @@ class Artworks extends Component {
     }
 
     destroyArtwork(id, event) {
-      // event.preventDefault();
+      event.preventDefault();
         axios.delete(`${Constants.BASE_URL}/users/${this.props.userID}/artworks/${id}`, {
           headers: {
             "Authorization": `Token token=${window.localStorage.getItem("token")}`
-
             }
 
         })
         .then(() => {
-
-      browserHistory.push(`/users/${this.props.userID}`);
-
-      this.setState({
-        artworks: this.state.artworks
-      });
+      browserHistory.push(`${Constants.BASE_URL}/users/${this.props.userID}`);
+      console.log(this.state);
+      this.componentDidMount();
+      // this.setState({
+      //   artworks: this.state.artworks
+      // })
+      ;
 
       })
         .catch((err) => {

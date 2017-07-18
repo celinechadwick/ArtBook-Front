@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { browserHistory } from "react-router";
+import Constants from "../constants";
+
 
 import Nav from "./Nav";
 
@@ -18,7 +20,7 @@ class EditUser extends Component {
 
     componentDidMount() {
         axios
-        .get(`https://project-4-back.herokuapp.com/users/${window.localStorage.userID}`, {
+        .get(`${Constants.BASE_URL}/users/${window.localStorage.userID}`, {
             headers: {
                 "Authorization": `Token token=${window.localStorage.getItem("token")}`
             }
@@ -37,11 +39,11 @@ class EditUser extends Component {
         event.preventDefault();
 
         axios
-        .put(`https://project-4-back.herokuapp.com/users/${this.props.params.id}`, {
+        .put(`${Constants.BASE_URL}/users/${this.props.params.id}`, {
             user: this.state
         }, {
             headers: {
-                "Authorization": window.localStorage.getItem("token")
+              "Authorization": `Token token=${window.localStorage.getItem("token")}`
             }
         })
         .then(() => {

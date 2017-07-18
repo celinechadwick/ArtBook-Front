@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { browserHistory, Link } from "react-router";
 import axios from "axios";
 import Nav from './Nav';
-const marginStyle = {'margin-top':'10px'}
-
 import Constants from "../constants";
+const background = {'background-color': 'rgba(30,33,39,.85)'}
+const marginStyle = {'margin-top':'10px'}
 
 class Login extends Component {
   constructor(props) {

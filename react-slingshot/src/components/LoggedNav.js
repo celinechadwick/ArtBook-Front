@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, browserHistory } from "react-router";
 const Style = {width:'200', height:'200', padding:'20px'};
-const NavStyle = {'background-color':'white', margin:'20px'}
+const NavStyle = {'background-color':'white', margin:'30px'}
 const ulStyle = {'margin-left': '38%'}
 
 class LoggedNav extends Component {

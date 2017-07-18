@@ -7,7 +7,7 @@ class Nav extends Component {
         super(props);
     }
 
-    
+
 
     render() {
         if (window.localStorage.getItem("token")) {

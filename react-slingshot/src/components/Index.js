@@ -6,6 +6,7 @@ import One from "./One";
 
 import Constants from "../constants";
 const style={'margin-top':'10px'}
+const background = {'background-color': 'rgba(30,33,39,.85)'}
 
 class Index extends Component {
     constructor(props) {
@@ -61,7 +62,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div>
+            <div style = {background}>
                 <Nav />
               <div className="container well small-container margin-top-20">
                 <form onSubmit={this.handleSubmit.bind(this)}>
