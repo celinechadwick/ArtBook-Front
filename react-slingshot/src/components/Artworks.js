@@ -54,7 +54,6 @@ class Artworks extends Component {
       // this.setState({
       //   artworks: this.state.artworks
       // })
-      ;
 
       })
         .catch((err) => {

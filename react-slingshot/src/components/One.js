@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { browserHistory, Link } from "react-router";
 import axios from 'axios';
-import Login from "./Login"
 import Constants from "../constants";
 const floatRight = {'float':'right'}
 

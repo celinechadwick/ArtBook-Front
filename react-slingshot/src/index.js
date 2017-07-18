@@ -15,7 +15,6 @@ import Login from "./components/Login";
 import NewUser from "./components/NewUser";
 import User from "./components/User";
 import EditUser from "./components/EditUser";
-import Nav from "./components/Nav";
 
 
 const restrict = () => {
